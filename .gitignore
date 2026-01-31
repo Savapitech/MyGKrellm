@@ -4,3 +4,6 @@
 bistroMatic
 .build/
 test
+.cache
+compile_commands.json
+MyGKrellm
