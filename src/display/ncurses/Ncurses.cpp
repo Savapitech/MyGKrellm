@@ -26,7 +26,6 @@ void Ncurses::init() {
 }
 
 void Ncurses::drawBox(int x, int y, int width, int heigth) {
-  attron(COLOR_PAIR(1));
   heigth /= 2;
   y /= 2;
 
@@ -84,6 +83,8 @@ void Ncurses::drawBar(int x, int y, int height, int width, uint8_t percentage, s
 
       attroff(COLOR_PAIR(1));
       attroff(COLOR_PAIR(2));
+      attroff(COLOR_PAIR(3));
+      attroff(COLOR_PAIR(4));
     }
     addch(']');
   }
