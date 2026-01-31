@@ -17,6 +17,6 @@ void ModuleCpuInfo::draw(IDisplay &display) {
   x += 1;
 
   for (size_t i = 0; i < cpus.size(); ++i) { 
-    display.drawText(x, y + i *2, std::to_string(cpus[i]) + "%" + "\t\tCore\t" + std::to_string(i));
+    display.drawText(x, y + i *2, "Core " + std::to_string(i) + "\t" + std::to_string(cpus[i]) + "%");
   }
 }

@@ -50,9 +50,8 @@ void Ncurses::displayWindow() {
 }
 
 void Ncurses::refreshWindow() {
-  timeout(900);
+  timeout(1000);
   _ch = getch();
-  usleep(1000);
 }
 
 void Ncurses::cleanup() {
