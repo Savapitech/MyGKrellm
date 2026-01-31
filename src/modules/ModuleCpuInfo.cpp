@@ -18,11 +18,10 @@ void ModuleCpuInfo::draw(IDisplay &display) {
   display.drawText(x + 1, y, "CPU Info");
   y += 2;
   x += 1;
+  display.drawText(x + 1, y, "Physical: " + std::to_string(physics) + ", " + "Virtual: " + std::to_string(virtuals));
+  y += 2;
   display.drawBar(x, y, 1, 50, cpus[0], "Total");
   y += 2;
-  display.drawText(x + 1, y, "Physical: " + std::to_string(physics) + ", " + "Virtual: " + std::to_string(virtuals));
-  y += 3;
-  for (size_t i = 0; i < cpus.size(); ++i) { 
+  for (size_t i = 1; i < cpus.size() - 1; ++i) 
     display.drawBar(x, y + i * 2, 1, 50, cpus[i], "Core " + std::to_string(i));
-  }
 }
