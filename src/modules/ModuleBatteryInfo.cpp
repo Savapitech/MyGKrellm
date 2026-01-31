@@ -4,6 +4,8 @@
 #include "../Metrics.hpp"
 #include "ModuleBatteryInfo.hpp"
 
+namespace Krell {
+
 void ModuleBatteryInfo::update() { return; }
 
 void ModuleBatteryInfo::draw(IDisplay &display) {
@@ -23,3 +25,5 @@ void ModuleBatteryInfo::draw(IDisplay &display) {
   display.drawGraph(53, 55, 25, 187, BATTERY_QUEUE_SIZE, this->_queue,
                     "Battery Usage");
 }
+
+} // namespace Krell

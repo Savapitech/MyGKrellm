@@ -4,6 +4,8 @@
 
 #include "Ncurses.hpp"
 
+namespace Krell {
+
 Ncurses::Ncurses() { _name = "Ncurses"; }
 
 Ncurses::~Ncurses() { endwin(); }
@@ -103,3 +105,5 @@ void Ncurses::displayWindow() {
 void Ncurses::refreshWindow() { refresh(); }
 
 void Ncurses::cleanup() { endwin(); }
+
+} // namespace Krell

@@ -9,6 +9,8 @@
 #define X_RATIO 8
 #define Y_RATIO 9
 
+namespace Krell {
+
 class SFML : public ADisplay {
 public:
   SFML();
@@ -34,3 +36,5 @@ private:
   sf::Font _font;
   sf::Event _event;
 };
+
+} // namespace Krell

@@ -7,6 +7,8 @@
 #define TIME_FORMAT "%H:%M:%S"
 #define DATE_FORMAT "%d/%m/%Y"
 
+namespace Krell {
+
 namespace Metrics {
 class Inet {
   std::string _name;
@@ -56,3 +58,5 @@ std::uint64_t getRamUsedKb();
 std::vector<Metrics::Inet> getInets();
 std::uint8_t getBatteryPercentage();
 }; // namespace Metrics
+
+} // namespace Krell

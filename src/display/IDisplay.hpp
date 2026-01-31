@@ -9,6 +9,8 @@
 #define RAM_QUEUE_SIZE 100
 #define BATTERY_QUEUE_SIZE 100
 
+namespace Krell {
+
 class IDisplay {
   public:
     virtual ~IDisplay() = default;
@@ -24,3 +26,5 @@ class IDisplay {
     virtual int getY() const = 0;
     virtual void setY(int y) = 0;
 };
+
+} // namespace Krell

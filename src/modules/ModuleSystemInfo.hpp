@@ -4,6 +4,8 @@
 #include "AModule.hpp"
 #include <string>
 
+namespace Krell {
+
 class ModuleSystemInfo : public AModule {
 public:
   ModuleSystemInfo();
@@ -19,3 +21,5 @@ private:
   std::string _time;
   std::string _date;
 };
+
+} // namespace Krell

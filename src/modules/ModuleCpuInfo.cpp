@@ -3,6 +3,8 @@
 #include <cstdint>
 #include <string>
 
+namespace Krell {
+
 void ModuleCpuInfo::update() { return; }
 
 void ModuleCpuInfo::draw(IDisplay &display) {
@@ -32,3 +34,5 @@ void ModuleCpuInfo::draw(IDisplay &display) {
   display.setY(y + cpus.size() * 2);
   display.drawGraph(53, 1, 25, 187, CPU_QUEUE_SIZE, this->_queue, "CPU Usage");
 }
+
+} // namespace Krell

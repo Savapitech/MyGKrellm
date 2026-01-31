@@ -4,6 +4,8 @@
 #include <string>
 #include <sys/types.h>
 
+namespace Krell {
+
 void ModuleRamInfo::update() { return; }
 
 void ModuleRamInfo::draw(IDisplay &display) {
@@ -28,3 +30,5 @@ void ModuleRamInfo::draw(IDisplay &display) {
   this->_queue.push_front(used * 100 / total);
   display.drawGraph(53, 28, 25, 187, RAM_QUEUE_SIZE, this->_queue, "RAM Usage");
 }
+
+} // namespace Krell

@@ -3,6 +3,8 @@
 #include "../display/IDisplay.hpp"
 #include "AModule.hpp"
 
+namespace Krell {
+
 class ModuleRamInfo : public AModule {
 public:
   ModuleRamInfo() = default;
@@ -13,3 +15,5 @@ public:
 private:
   std::deque<uint8_t> _queue;
 };
+
+} // namespace Krell

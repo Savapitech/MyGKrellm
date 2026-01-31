@@ -3,6 +3,8 @@
 #include "IDisplay.hpp"
 #include <string>
 
+namespace Krell {
+
 class ADisplay : public IDisplay {
   int _y = 1;
 
@@ -28,3 +30,5 @@ class ADisplay : public IDisplay {
     std::string _name;
     bool _state = false;
 };
+
+} // namespace Krell

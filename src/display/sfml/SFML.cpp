@@ -1,5 +1,7 @@
 #include "SFML.hpp"
 
+namespace Krell {
+
 SFML::SFML() : _name("SFML") { this->_font.loadFromFile(FONT_PATH); }
 
 SFML::~SFML() { this->_window.close(); }
@@ -131,3 +133,5 @@ void SFML::drawGraph(int x, int y, int height, int width, int nbelem,
 const sf::RenderWindow &SFML::getWindow() const { return this->_window; }
 
 void SFML::cleanup() { this->_window.close(); }
+
+} // namespace Krell

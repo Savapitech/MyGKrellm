@@ -14,6 +14,8 @@
 
 #include "Metrics.hpp"
 
+namespace Krell {
+
 std::string Metrics::getUsername() {
   return std::string(getlogin() != nullptr ? getlogin() : "Unknown");
 }
@@ -283,3 +285,5 @@ std::uint16_t Metrics::getCpuFreq() {
       return std::stoi(line.substr(line.find(':') + 1));
   return 0;
 }
+
+} // namespace Krell

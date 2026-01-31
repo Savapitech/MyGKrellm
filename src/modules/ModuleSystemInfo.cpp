@@ -1,6 +1,8 @@
 #include "ModuleSystemInfo.hpp"
 #include "../Metrics.hpp"
 
+namespace Krell {
+
 ModuleSystemInfo::ModuleSystemInfo() {
   _hostname = Metrics::getHostname();
   _username = Metrics::getUsername();
@@ -22,10 +24,10 @@ void ModuleSystemInfo::draw(IDisplay &display) {
   std::string kernel = "Kernel:  " + _kernel;
   int y = display.getY() + 4;
   int x = 1;
-  display.drawBox(x, y += 1, 50, 12);
+  display.drawBox(x, y += 1, 50, 14);
   display.drawText(x + 2, y, "System Info", true);
   y++;
-  display.drawText(3, y += 2, user);
+  display.drawText(3, y += 3, user);
   display.drawText(3, y += 2, host);
   display.drawText(37, y, _date);
   display.drawText(3, y += 2, os);
@@ -33,3 +35,5 @@ void ModuleSystemInfo::draw(IDisplay &display) {
   display.drawText(3, y += 2, kernel);
   display.setY(y);
 }
+
+} // namespace Krell

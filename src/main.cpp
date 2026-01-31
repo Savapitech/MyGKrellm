@@ -13,8 +13,9 @@
 #include "modules/ModuleRamInfo.hpp"
 #include "modules/ModuleSystemInfo.hpp"
 
-int mainLoop(IDisplay *disp, IModule *sy, IModule *cpu, IModule *ram,
-             IModule *net, IModule *battery) {
+int mainLoop(Krell::IDisplay *disp, Krell::IModule *sy, Krell::IModule *cpu,
+             Krell::IModule *ram, Krell::IModule *net,
+             Krell::IModule *battery) {
   while (disp->getState()) {
     disp->refreshWindow();
     sy->update();
@@ -33,16 +34,16 @@ int mainLoop(IDisplay *disp, IModule *sy, IModule *cpu, IModule *ram,
 }
 
 int main(void) {
-  Ncurses nc;
-  SFML sf;
-  IDisplay *disp = &nc;
-  IDisplay *stash = &sf;
-  IDisplay *tmp;
-  IModule *battery = new ModuleBatteryInfo();
-  IModule *sy = new ModuleSystemInfo();
-  IModule *cpu = new ModuleCpuInfo();
-  IModule *ram = new ModuleRamInfo();
-  IModule *net = new ModuleNetworkInfo();
+  Krell::Ncurses nc;
+  Krell::SFML sf;
+  Krell::IDisplay *disp = &nc;
+  Krell::IDisplay *stash = &sf;
+  Krell::IDisplay *tmp;
+  Krell::IModule *battery = new Krell::ModuleBatteryInfo();
+  Krell::IModule *sy = new Krell::ModuleSystemInfo();
+  Krell::IModule *cpu = new Krell::ModuleCpuInfo();
+  Krell::IModule *ram = new Krell::ModuleRamInfo();
+  Krell::IModule *net = new Krell::ModuleNetworkInfo();
 
   disp->init();
   while (mainLoop(disp, sy, cpu, ram, net, battery)) {

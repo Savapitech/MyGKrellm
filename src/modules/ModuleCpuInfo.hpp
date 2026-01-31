@@ -4,6 +4,8 @@
 #include "AModule.hpp"
 #include <deque>
 
+namespace Krell {
+
 class ModuleCpuInfo : public AModule {
 public:
   ModuleCpuInfo() = default;
@@ -14,3 +16,5 @@ public:
 private:
   std::deque<uint8_t> _queue;
 };
+
+} // namespace Krell

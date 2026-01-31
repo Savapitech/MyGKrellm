@@ -1,6 +1,8 @@
 #include "../ADisplay.hpp"
 #include <ncurses.h>
 
+namespace Krell {
+
 class Ncurses : public ADisplay {
 public:
   Ncurses();
@@ -22,3 +24,5 @@ private:
   WINDOW *_window;
   int _ch;
 };
+
+} // namespace Krell

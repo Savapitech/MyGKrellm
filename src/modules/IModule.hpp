@@ -2,6 +2,8 @@
 
 #include "../display/IDisplay.hpp"
 
+namespace Krell {
+
 class IModule {
 public:
   virtual std::string get_name() const = 0;
@@ -9,3 +11,5 @@ public:
   virtual void draw(IDisplay &display) = 0;
   virtual void update() = 0;
 };
+
+} // namespace Krell

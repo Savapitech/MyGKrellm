@@ -3,6 +3,8 @@
 #include <string>
 #include <vector>
 
+namespace Krell {
+
 void ModuleNetworkInfo::update() { return; }
 
 void ModuleNetworkInfo::draw(IDisplay &display) {
@@ -33,3 +35,5 @@ void ModuleNetworkInfo::draw(IDisplay &display) {
     y += 2;
   }
 }
+
+} // namespace Krell
