@@ -1,4 +1,6 @@
 #include "Ncurses.hpp"
+#include <ncurses.h>
+#include <unistd.h>
 
 Ncurses::Ncurses() {
   _name = "Ncurses";
@@ -6,7 +8,6 @@ Ncurses::Ncurses() {
 
 Ncurses::~Ncurses() {
   endwin();
-
 }
 
 void Ncurses::init() {
@@ -31,7 +32,6 @@ void Ncurses::drawBox(int x, int y, int width, int heigth) {
   mvvline(y + 1, x, ACS_VLINE, heigth - 1);
   mvvline(y + 1, x + width, ACS_VLINE, heigth - 1);
   mvhline(y + heigth, x + 1, ACS_HLINE, width - 1);
-
   mvaddch(y + heigth, x, ACS_LLCORNER);
   mvaddch(y + heigth, x + width, ACS_LRCORNER);
   mvaddch(y, x, ACS_ULCORNER);
@@ -50,7 +50,9 @@ void Ncurses::displayWindow() {
 }
 
 void Ncurses::refreshWindow() {
-  return;
+  timeout(900);
+  _ch = getch();
+  usleep(1000);
 }
 
 void Ncurses::cleanup() {

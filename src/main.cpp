@@ -7,6 +7,7 @@
 #include "display/ncurses/Ncurses.hpp"
 #include "display/sfml/SFML.hpp"
 #include "modules/IModule.hpp"
+#include "modules/ModuleCpuInfo.hpp"
 #include "modules/ModuleSystemInfo.hpp"
 #include "modules/ModuleCpuInfo.hpp"
 
@@ -30,7 +31,6 @@ int main(void) {
   IDisplay *disp = &sf;
   IModule *sy = new ModuleSystemInfo();
   IModule *cpu = new ModuleCpuInfo();
-
 
   disp->init();
   while (mainLoop(disp, sy, cpu)) {

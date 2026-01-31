@@ -13,4 +13,5 @@ class Ncurses : public ADisplay {
     virtual void cleanup() override;
   private:
     WINDOW *_window;
+    int _ch;
 };
