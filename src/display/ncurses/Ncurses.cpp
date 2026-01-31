@@ -13,6 +13,7 @@ Ncurses::~Ncurses() {
 void Ncurses::init() {
     _window = initscr();
     start_color();
+    curs_set(0);
     init_pair(1, COLOR_WHITE, COLOR_BLACK);
     init_pair(2, COLOR_RED, COLOR_BLACK);
     init_pair(3, COLOR_GREEN, COLOR_BLACK);
@@ -46,12 +47,12 @@ void Ncurses::drawText(int x, int y, std::string text) {
 
 
 void Ncurses::displayWindow() {
-  refresh();
+  timeout(1000);
+  _ch = getch();
 }
 
 void Ncurses::refreshWindow() {
-  timeout(1000);
-  _ch = getch();
+  refresh();
 }
 
 void Ncurses::cleanup() {
