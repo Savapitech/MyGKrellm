@@ -11,10 +11,10 @@ class SFML : public ADisplay {
     SFML();
     ~SFML();
     void init();
-    void display_window();
-    void refresh_window();
-    void draw_box(int x, int y, int width, int height);
-    void draw_text(int x, int y, std::string text);
+    void displayWindow();
+    void refreshWindow();
+    void drawBox(int x, int y, int width, int height);
+    void drawText(int x, int y, std::string text);
 
     const sf::RenderWindow &getWindow() const;
 

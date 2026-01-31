@@ -17,12 +17,12 @@ void SFML::init()
     return;
 }
 
-void SFML::display_window()
+void SFML::displayWindow()
 {
     this->_window.display();
 }
 
-void SFML::refresh_window()
+void SFML::refreshWindow()
 {
     while (this->_window.pollEvent(this->_event)) {
         if (this->_event.type == sf::Event::Closed)
@@ -31,7 +31,7 @@ void SFML::refresh_window()
     this->_window.clear();
 }
 
-void SFML::draw_box(int x, int y, int width, int height)
+void SFML::drawBox(int x, int y, int width, int height)
 {
     sf::RectangleShape rec(sf::Vector2f(height, width));
     rec.setPosition(sf::Vector2f(x, y));
@@ -39,7 +39,7 @@ void SFML::draw_box(int x, int y, int width, int height)
     this->_window.draw(rec);
 }
 
-void SFML::draw_text(int x, int y, std::string text)
+void SFML::drawText(int x, int y, std::string text)
 {
     sf::Text tex(text, this->_font, 16);
     tex.setPosition(sf::Vector2f(x, y));

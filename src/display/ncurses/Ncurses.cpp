@@ -22,7 +22,7 @@ void Ncurses::init() {
 }
 
 
-void Ncurses::draw_box(int x, int y, int width, int heigth) {
+void Ncurses::drawBox(int x, int y, int width, int heigth) {
   attron(COLOR_PAIR(1));
   heigth /= 2;
   y /= 2;
@@ -38,18 +38,18 @@ void Ncurses::draw_box(int x, int y, int width, int heigth) {
   mvaddch(y, x + width, ACS_URCORNER);
 }
 
-void Ncurses::draw_text(int x, int y, std::string text) {
+void Ncurses::drawText(int x, int y, std::string text) {
   y /= 2;
   attron(COLOR_PAIR(2));
   mvprintw(y, x, " %s ", text.c_str());
 }
 
 
-void Ncurses::display_window() {
+void Ncurses::displayWindow() {
   refresh();
 }
 
-void Ncurses::refresh_window() {
+void Ncurses::refreshWindow() {
   return;
 }
 
