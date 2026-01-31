@@ -22,7 +22,8 @@ CXXFLAGS += -Wcast-qual -Wformat=2 -Wshadow -fno-builtin
 CXXFLAGS += -Wstrict-aliasing=0 -Wstrict-prototypes -Wunreachable-code
 CXXFLAGS += -Wwrite-strings -Werror=declaration-after-statement
 CXXFLAGS += -Werror=format-nonliteral -Werror=int-conversion -Werror=return-type
-CXXFLAGS += -lncurses -lsfml-graphics -lsfml-window -lsfml-system
+
+LDFLAGS += -lncurses -lsfml-graphics -lsfml-window -lsfml-system
 
 include utils.mk
 
@@ -41,7 +42,7 @@ $$(BUILD_DIR)/$(strip $1)/%.o: %.cpp
 	@ $$(LOG_TIME) "$$(C_GREEN) CC $$(C_PURPLE) $$(notdir $$@) $$(C_RESET)"
 
 $$(NAME_$(strip $1)): $$(LIB_NAME_$(strip $1)) $$(OBJ_$(strip $1))
-	@ $$(LINK.cpp) $$(OBJ_$(strip $1)) $(strip $3) -o $$@
+	@ $$(LINK.cpp) $$(OBJ_$(strip $1)) $$(LDFLAGS) $(strip $3) -o $$@
 	@ $$(LOG_TIME) "$$(C_CYAN) LD $$(C_PURPLE) $$(notdir $$@) $$(C_RESET)"
 	@ $$(LOG_TIME) "$$(C_GREEN) OK  Compilation finished $$(C_RESET)"
 
