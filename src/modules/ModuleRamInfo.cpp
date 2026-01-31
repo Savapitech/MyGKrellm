@@ -13,7 +13,7 @@ void ModuleRamInfo::draw(IDisplay &display) {
   std::uint64_t used = Metrics::getRamUsedKb() / 1000;
   std::uint64_t free = total - used;
   int x = 1;
-  int y = 65;
+  int y = 70;
 
   display.drawBox(x, y, 50, 15);
   display.drawText(x + 1, y, "Ram Info");
