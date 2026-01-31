@@ -31,7 +31,6 @@ public:
   const sf::RenderWindow &getWindow() const;
 
 private:
-  std::string _name;
   sf::RenderWindow _window;
   sf::Font _font;
   sf::Event _event;

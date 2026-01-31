@@ -20,11 +20,38 @@ int mainLoop(Krell::IDisplay *disp,
   while (disp->getState()) {
     disp->refreshWindow();
 
-    for (auto &module : modules)
-      module->update();
+    std::vector<int> keys = disp->getKeys();
+    for (int key : keys) {
+      char k = (char)tolower(key);
+      if (k == 'e')
+        disp->setState(false);
+      for (auto &module : modules) {
+        if (k == 'b' &&
+            dynamic_cast<Krell::ModuleBatteryInfo *>(module.get())) {
+          module->set_state(!module->get_state());
+        } else if (k == 's' &&
+                   dynamic_cast<Krell::ModuleSystemInfo *>(module.get())) {
+          module->set_state(!module->get_state());
+        } else if (k == 'c' &&
+                   dynamic_cast<Krell::ModuleCpuInfo *>(module.get())) {
+          module->set_state(!module->get_state());
+        } else if (k == 'r' &&
+                   dynamic_cast<Krell::ModuleRamInfo *>(module.get())) {
+          module->set_state(!module->get_state());
+        } else if (k == 'n' &&
+                   dynamic_cast<Krell::ModuleNetworkInfo *>(module.get())) {
+          module->set_state(!module->get_state());
+        }
+      }
+    }
 
     for (auto &module : modules)
-      module->draw(*disp);
+      if (module->get_state())
+        module->update();
+
+    for (auto &module : modules)
+      if (module->get_state())
+        module->draw(*disp);
 
     disp->displayWindow();
     disp->setY(1);

@@ -13,7 +13,8 @@ void ModuleRamInfo::draw(IDisplay &display) {
   std::uint64_t used = Metrics::getRamUsedKb() / 1000;
   std::uint64_t free = total - used;
   int x = 1;
-  int y = display.getY() + 4;
+  int y = display.getY() + 2;
+  int start_y = y;
 
   display.drawBox(x, y, 50, 11);
   display.drawText(x + 2, y, "Ram Info", true);
@@ -24,7 +25,7 @@ void ModuleRamInfo::draw(IDisplay &display) {
                    "RAM Usage: " + std::to_string(used) + "MB / " +
                        std::to_string(total) + "MB, " + std::to_string(free) +
                        "MB free.");
-  display.setY(y);
+  display.setY(start_y + 10);
   if (this->_queue.size() == RAM_QUEUE_SIZE)
     this->_queue.pop_back();
   this->_queue.push_front(used * 100 / total);

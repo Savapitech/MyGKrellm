@@ -2,7 +2,10 @@
 
 namespace Krell {
 
-SFML::SFML() : _name("SFML") { this->_font.loadFromFile(FONT_PATH); }
+SFML::SFML() {
+  _name = "SFML";
+  this->_font.loadFromFile(FONT_PATH);
+}
 
 SFML::~SFML() { this->_window.close(); }
 
@@ -18,9 +21,24 @@ void SFML::displayWindow() { this->_window.display(); }
 
 void SFML::refreshWindow() {
   while (this->_window.pollEvent(this->_event)) {
-    if (this->_event.type == sf::Event::KeyPressed &&
-        this->_event.key.code == sf::Keyboard::E) {
+    if (this->_event.type == sf::Event::Closed) {
       this->setState(false);
+    }
+    if (this->_event.type == sf::Event::KeyPressed) {
+      if (this->_event.key.code == sf::Keyboard::E) {
+        this->setState(false);
+        _keys.push_back('e');
+      } else if (this->_event.key.code == sf::Keyboard::B) {
+        _keys.push_back('b');
+      } else if (this->_event.key.code == sf::Keyboard::S) {
+        _keys.push_back('s');
+      } else if (this->_event.key.code == sf::Keyboard::C) {
+        _keys.push_back('c');
+      } else if (this->_event.key.code == sf::Keyboard::R) {
+        _keys.push_back('r');
+      } else if (this->_event.key.code == sf::Keyboard::N) {
+        _keys.push_back('n');
+      }
     }
   }
   this->_window.clear();

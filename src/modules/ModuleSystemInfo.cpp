@@ -22,9 +22,10 @@ void ModuleSystemInfo::draw(IDisplay &display) {
   std::string host = "Hostname:  " + _hostname;
   std::string os = "Op. sys.:  " + _os;
   std::string kernel = "Kernel:  " + _kernel;
-  int y = display.getY() + 4;
+  int y = display.getY() + 2;
+  int start_y = y;
   int x = 1;
-  display.drawBox(x, y += 1, 50, 14);
+  display.drawBox(x, y, 50, 14);
   display.drawText(x + 2, y, "System Info", true);
   y++;
   display.drawText(3, y += 3, user);
@@ -33,7 +34,7 @@ void ModuleSystemInfo::draw(IDisplay &display) {
   display.drawText(3, y += 2, os);
   display.drawText(39, y, _time);
   display.drawText(3, y += 2, kernel);
-  display.setY(y);
+  display.setY(start_y + 14);
 }
 
 } // namespace Krell

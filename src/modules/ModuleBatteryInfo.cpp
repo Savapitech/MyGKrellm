@@ -10,7 +10,8 @@ void ModuleBatteryInfo::update() { return; }
 
 void ModuleBatteryInfo::draw(IDisplay &display) {
   int x = 1;
-  int y = display.getY();
+  int y = display.getY() + 2;
+  int start_y = y;
   uint8_t battery = Metrics::getBatteryPercentage();
 
   display.drawBox(x, y, 50, 9);
@@ -18,7 +19,7 @@ void ModuleBatteryInfo::draw(IDisplay &display) {
   y += 4;
   x += 1;
   display.drawBar(x + 1, y, 1, 48, battery, "Battery", true);
-  display.setY(y);
+  display.setY(start_y + 8);
   if (this->_queue.size() == BATTERY_QUEUE_SIZE)
     this->_queue.pop_back();
   this->_queue.push_front(battery);

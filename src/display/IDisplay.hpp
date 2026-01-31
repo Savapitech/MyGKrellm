@@ -4,6 +4,7 @@
 #include <string>
 #include <stdint.h>
 #include <deque>
+#include <vector>
 
 #define CPU_QUEUE_SIZE 100
 #define RAM_QUEUE_SIZE 100
@@ -23,6 +24,8 @@ class IDisplay {
     virtual void drawGraph(int x, int y, int height, int width, int nbelem, std::deque<uint8_t> &queue, std::string title) = 0;
     virtual void cleanup() = 0;
     virtual bool getState() const = 0;
+    virtual void setState(bool state) = 0;
+    virtual std::vector<int> getKeys() = 0;
     virtual int getY() const = 0;
     virtual void setY(int y) = 0;
 };
