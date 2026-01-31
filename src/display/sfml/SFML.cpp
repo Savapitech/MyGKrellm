@@ -44,7 +44,7 @@ void SFML::drawBox(int x, int y, int width, int height)
     this->_window.draw(rec);
 }
 
-void SFML::drawText(int x, int y, std::string text)
+void SFML::drawText(int x, int y, std::string text, bool header)
 {
     sf::Text tex(text, this->_font, 20);
     tex.setPosition(sf::Vector2f(x * 8, y * 16));

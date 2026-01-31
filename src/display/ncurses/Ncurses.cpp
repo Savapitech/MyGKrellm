@@ -39,7 +39,7 @@ void Ncurses::drawBox(int x, int y, int width, int heigth) {
   mvaddch(y, x + width, ACS_URCORNER);
 }
 
-void Ncurses::drawText(int x, int y, std::string text) {
+void Ncurses::drawText(int x, int y, std::string text, bool header) {
   y /= 2;
   attron(COLOR_PAIR(1));
   mvprintw(y, x, " %s ", text.c_str());
