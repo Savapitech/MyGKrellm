@@ -4,6 +4,9 @@ BIN_NAME := MyGKrellm
 
 SRC = src/main.cpp
 SRC += src/Metrics.cpp
+SRC += src/display/sfml/SFML.cpp
+SRC += src/display/ncurses/Ncurses.cpp
+
 
 BUILD_DIR := .build
 
@@ -16,6 +19,7 @@ CXXFLAGS += -Wcast-qual -Wformat=2 -Wshadow -fno-builtin
 CXXFLAGS += -Wstrict-aliasing=0 -Wstrict-prototypes -Wunreachable-code
 CXXFLAGS += -Wwrite-strings -Werror=declaration-after-statement
 CXXFLAGS += -Werror=format-nonliteral -Werror=int-conversion -Werror=return-type
+CXXFLAGS += -lncurses -lsfml-graphics -lsfml-window -lsfml-system
 
 include utils.mk
 

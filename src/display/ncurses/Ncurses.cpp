@@ -47,10 +47,9 @@ void Ncurses::draw_text(int x, int y, std::string text) {
 
 void Ncurses::display_window() {
   refresh();
-  getch();
 }
 
-void Ncurses::refresh() {
-  getch();
+void Ncurses::refresh_window() {
+  return;
 }
 

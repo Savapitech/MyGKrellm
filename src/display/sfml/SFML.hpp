@@ -4,7 +4,7 @@
 #include <string>
 #include <SFML/Graphics.hpp>
 
-#define FONT_PATH "../../assets/VMV Sega Genesis/VMVSegaGenesis-Regular.otf"
+#define FONT_PATH "src/assets/VMV Sega Genesis/VMVSegaGenesis-Regular.otf"
 
 class SFML : public ADisplay {
   public:
@@ -12,7 +12,7 @@ class SFML : public ADisplay {
     ~SFML();
     void init();
     void display_window();
-    void refresh();
+    void refresh_window();
     void draw_box(int x, int y, int width, int height);
     void draw_text(int x, int y, std::string text);
 

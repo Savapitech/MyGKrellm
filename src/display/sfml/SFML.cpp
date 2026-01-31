@@ -22,7 +22,7 @@ void SFML::display_window()
     this->_window.display();
 }
 
-void SFML::refresh()
+void SFML::refresh_window()
 {
     while (this->_window.pollEvent(this->_event)) {
         if (this->_event.type == sf::Event::Closed)
@@ -41,7 +41,7 @@ void SFML::draw_box(int x, int y, int width, int height)
 
 void SFML::draw_text(int x, int y, std::string text)
 {
-    sf::Text tex(text, this->_font, 10);
+    sf::Text tex(text, this->_font, 16);
     tex.setPosition(sf::Vector2f(x, y));
     tex.setFillColor(sf::Color::Red);
     tex.setOutlineColor(sf::Color::Black);
