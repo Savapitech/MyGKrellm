@@ -26,7 +26,6 @@ void SFML::refreshWindow() {
     }
     if (this->_event.type == sf::Event::KeyPressed) {
       if (this->_event.key.code == sf::Keyboard::E) {
-        this->setState(false);
         _keys.push_back('e');
       } else if (this->_event.key.code == sf::Keyboard::B) {
         _keys.push_back('b');

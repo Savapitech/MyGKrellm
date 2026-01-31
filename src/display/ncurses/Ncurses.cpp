@@ -100,8 +100,6 @@ void Ncurses::displayWindow() {
   _ch = getch();
   if (_ch != ERR) {
     _keys.push_back(_ch);
-    if (_ch == 'e')
-      this->setState(false);
   }
 }
 
