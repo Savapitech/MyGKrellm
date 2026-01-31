@@ -62,11 +62,11 @@ void Ncurses::drawBar(int x, int y, int height, int width, uint8_t percentage, s
     for (int i = 0; i < barWidth; ++i) {
       bool isFilled = i < filled;
 
-    if (isFilled && i < barWidth / 2)
+    if (i < barWidth / 2)
         attron(COLOR_PAIR(3));
-    else if (isFilled && i > barWidth / 2 && i <= barWidth / 4 * 3)
+    else if (i > barWidth / 2 && i <= barWidth / 4 * 3)
         attron(COLOR_PAIR(4));
-    else if (isFilled && i > barWidth / 4 * 3)
+    else if (i > barWidth / 4 * 3)
         attron(COLOR_PAIR(2));
     else
         attron(COLOR_PAIR(1));
