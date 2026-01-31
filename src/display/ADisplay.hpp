@@ -9,8 +9,8 @@ class ADisplay : public IDisplay {
     virtual void init();
     virtual void display_window(); 
     virtual void refresh();
-    virtual void draw_box();
-    virtual void draw_text();
+    virtual void draw_box(int x, int y, int width, int height);
+    virtual void draw_text(int x, int y, std::string text);
     virtual std::string get_name() const {
       return _name;
     };
