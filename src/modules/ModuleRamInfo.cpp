@@ -19,7 +19,7 @@ void ModuleRamInfo::draw(IDisplay &display) {
   display.drawText(x + 1, y, "Ram Info");
   y += 2;
   x += 1;
-  //drawbar
+  display.drawBar(x, y, 1, 50, (used * 100/ total), "");
   y += 4;
   display.drawText(x + 3, y += 2, std::to_string(used * 100 / total) + "%");
   display.drawText(x + 1, y += 2, "RAM Usage: " + std::to_string(used) + " / " + std::to_string(total) + ", " + std::to_string(free) + " free.");
