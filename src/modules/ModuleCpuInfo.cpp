@@ -11,7 +11,8 @@ void ModuleCpuInfo::draw(IDisplay &display) {
   int x = 1;
   int y = 17;
 
-  display.drawBox(x, y, 50, 35);
+  display.drawBox(x, y, 50, cpus.size() * 2 + 2);
+  display.drawText(x + 1, y, "CPU Info");
   y += 2;
   x += 1;
 
