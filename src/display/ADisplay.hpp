@@ -1,17 +1,20 @@
 #pragma once
 
 #include "IDisplay.hpp"
+#include <string>
 
 class ADisplay : public IDisplay {
   public:
     virtual ~ADisplay() = default;
-    virtual void init() = 0;
-    virtual void display_window() = 0;
-    virtual void destroy() = 0;
-    virtual void refresh() = 0;
-    virtual void draw_box() = 0;
-    virtual void draw_text() = 0;
+    virtual void init();
+    virtual void display_window(); 
+    virtual void refresh();
+    virtual void draw_box();
+    virtual void draw_text();
+    virtual std::string get_name() const {
+      return _name;
+    };
   
   protected:
-
+    std::string _name;
 };
