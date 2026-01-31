@@ -1,6 +1,8 @@
-#include "Ncurses.hpp"
 #include <ncurses.h>
 #include <unistd.h>
+#include <algorithm>
+
+#include "Ncurses.hpp"
 
 Ncurses::Ncurses() {
   _name = "Ncurses";
@@ -11,18 +13,17 @@ Ncurses::~Ncurses() {
 }
 
 void Ncurses::init() {
-    _window = initscr();
-    start_color();
-    curs_set(0);
-    init_pair(1, COLOR_WHITE, COLOR_BLACK);
-    init_pair(2, COLOR_RED, COLOR_BLACK);
-    init_pair(3, COLOR_GREEN, COLOR_BLACK);
-    init_pair(4, COLOR_YELLOW, COLOR_BLACK);
-    cbreak();
-    noecho();
-    this->setState(true);
+  _window = initscr();
+  start_color();
+  curs_set(0);
+  init_pair(1, COLOR_WHITE, COLOR_BLACK);
+  init_pair(2, COLOR_RED, COLOR_BLACK);
+  init_pair(3, COLOR_GREEN, COLOR_BLACK);
+  init_pair(4, COLOR_YELLOW, COLOR_BLACK);
+  cbreak();
+  noecho();
+  this->setState(true);
 }
-
 
 void Ncurses::drawBox(int x, int y, int width, int heigth) {
   attron(COLOR_PAIR(1));
@@ -43,8 +44,45 @@ void Ncurses::drawText(int x, int y, std::string text) {
   y /= 2;
   attron(COLOR_PAIR(2));
   mvprintw(y, x, " %s ", text.c_str());
+  attroff(COLOR_PAIR(2));
 }
 
+void Ncurses::drawBar(int x, int y, int height, int width, uint8_t percentage, std::string text) {
+  percentage = std::clamp<uint8_t>(percentage, 0, 100);
+
+  y /= 2;
+  std::string content = " " + std::to_string(percentage) + "% " + text + " ";
+
+  int barWidth = width - 3;
+  int filled = barWidth * percentage / 100;
+
+  for (int row = 0; row < height; ++row) {
+    move(y + row, x);
+    addch('[');
+
+    for (int i = 0; i < barWidth; ++i) {
+      bool isFilled = i < filled;
+
+      if (isFilled)
+        attron(COLOR_PAIR(1));
+      else
+        attron(COLOR_PAIR(2));
+
+      if (row == height / 2 &&
+          i >= (barWidth - static_cast<int>(content.size())) / 2 &&
+          i <  (barWidth - static_cast<int>(content.size())) / 2 + static_cast<int>(content.size())) {
+
+        int textIndex = i - (barWidth - content.size()) / 2;
+        addch(content[textIndex]);
+      } else
+        addch(isFilled ? '|' : '.');
+
+      attroff(COLOR_PAIR(1));
+      attroff(COLOR_PAIR(2));
+    }
+    addch(']');
+  }
+}
 
 void Ncurses::displayWindow() {
   timeout(1000);

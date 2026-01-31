@@ -23,6 +23,6 @@ void ModuleCpuInfo::draw(IDisplay &display) {
   display.drawText(x + 1, y, "Physical: " + std::to_string(physics) + ", " + "Virtual: " + std::to_string(virtuals));
   y += 4;
   for (size_t i = 0; i < cpus.size(); ++i) { 
-    display.drawText(x, y + i *2, "Core " + std::to_string(i) + "\t" + std::to_string(cpus[i]) + "%");
+    display.drawBar(x, y + i * 2, 1, 50, cpus[i], "Core " + std::to_string(i));
   }
 }
