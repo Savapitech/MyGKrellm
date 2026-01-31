@@ -1,6 +1,7 @@
 #include <chrono>
 #include <cstdint>
 #include <ctime>
+#include <dirent.h>
 #include <fstream>
 #include <iomanip>
 #include <pwd.h>
@@ -223,4 +224,40 @@ std::vector<Metrics::Inet> Metrics::getInets() {
   }
 
   return inets;
+}
+
+std::uint8_t Metrics::getBatteryPercentage() {
+  DIR* dir = opendir("/sys/class/power_supply");
+  if (!dir)
+    return 0;
+
+  struct dirent* entry;
+
+  while ((entry = readdir(dir)) != nullptr) {
+    std::string name(entry->d_name);
+
+    if (name.rfind("BAT", 0) != 0)
+      continue;
+
+    std::string path = "/sys/class/power_supply/" + name + "/capacity";
+    std::ifstream file(path);
+
+    if (!file.is_open())
+      continue;
+
+    int capacity = 0;
+    file >> capacity;
+
+    closedir(dir);
+
+    if (capacity < 0)
+      capacity = 0;
+    if (capacity > 100)
+      capacity = 100;
+
+    return static_cast<uint8_t>(capacity);
+  }
+
+  closedir(dir);
+  return 0;
 }

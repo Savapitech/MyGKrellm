@@ -11,8 +11,9 @@
 #include "modules/ModuleNetworkInfo.hpp"
 #include "modules/ModuleSystemInfo.hpp"
 #include "modules/ModuleRamInfo.hpp"
+#include "modules/ModuleBatteryInfo.hpp"
 
-int mainLoop(IDisplay *disp, IModule *sy, IModule *cpu, IModule *ram, IModule *net)
+int mainLoop(IDisplay *disp, IModule *sy, IModule *cpu, IModule *ram, IModule *net, IModule *battery)
 {
     while (disp->getState()) {
       disp->refreshWindow();
@@ -20,6 +21,7 @@ int mainLoop(IDisplay *disp, IModule *sy, IModule *cpu, IModule *ram, IModule *n
       cpu->update();
       ram->update();
       net->update();
+      battery->draw(*disp);
       sy->draw(*disp);
       cpu->draw(*disp);
       ram->draw(*disp);
@@ -35,13 +37,14 @@ int main(void) {
   IDisplay *disp = &nc;
   IDisplay *stash = &nc;
   IDisplay *tmp;
+  IModule *battery = new ModuleBatteryInfo();
   IModule *sy = new ModuleSystemInfo();
   IModule *cpu = new ModuleCpuInfo();
   IModule *ram = new ModuleRamInfo();
   IModule *net = new ModuleNetworkInfo();
 
   disp->init();
-  while (mainLoop(disp, sy, cpu, ram, net)) {
+  while (mainLoop(disp, sy, cpu, ram, net, battery)) {
     disp->cleanup();
     tmp = disp;
     disp = stash;

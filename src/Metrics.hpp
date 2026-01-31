@@ -52,4 +52,5 @@ namespace Metrics {
   std::uint64_t getRamTotalKb();
   std::uint64_t getRamUsedKb();
   std::vector<Metrics::Inet> getInets();
+  std::uint8_t getBatteryPercentage();
 };

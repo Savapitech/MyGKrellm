@@ -7,11 +7,11 @@ SRC += src/modules/AModule.cpp
 SRC += src/modules/ModuleSystemInfo.cpp
 SRC += src/modules/ModuleCpuInfo.cpp
 SRC += src/modules/ModuleRamInfo.cpp
+SRC += src/modules/ModuleBatteryInfo.cpp
 SRC += src/modules/ModuleNetworkInfo.cpp
 SRC += src/Metrics.cpp
 SRC += src/display/sfml/SFML.cpp
 SRC += src/display/ncurses/Ncurses.cpp
-
 
 BUILD_DIR := .build
 
