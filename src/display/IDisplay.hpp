@@ -15,4 +15,6 @@ class IDisplay {
     virtual void drawBar(int x, int y, int height, int width, uint8_t percentage, std::string text) = 0;
     virtual void cleanup() = 0;
     virtual bool getState() const = 0;
+    virtual int getY() const = 0;
+    virtual void setY(int y) = 0;
 };
