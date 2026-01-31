@@ -41,9 +41,9 @@ void Ncurses::drawBox(int x, int y, int width, int heigth) {
 
 void Ncurses::drawText(int x, int y, std::string text) {
   y /= 2;
-  attron(COLOR_PAIR(2));
+  attron(COLOR_PAIR(1));
   mvprintw(y, x, " %s ", text.c_str());
-  attroff(COLOR_PAIR(2));
+  attroff(COLOR_PAIR(1));
 }
 
 void Ncurses::drawBar(int x, int y, int height, int width, uint8_t percentage, std::string text) {
