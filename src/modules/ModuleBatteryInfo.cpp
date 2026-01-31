@@ -16,6 +16,6 @@ void ModuleBatteryInfo::draw(IDisplay &display) {
   display.drawText(x + 2, y, "Battery Info");
   y += 4;
   x += 1;
-  display.drawBar(x + 1, y, 1, 48, Metrics::getBatteryPercentage(), "Battery");
+  display.drawBar(x + 1, y, 1, 48, Metrics::getBatteryPercentage(), "Battery", true);
   display.setY(y);
 }

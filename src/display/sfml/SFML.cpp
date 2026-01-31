@@ -53,7 +53,7 @@ void SFML::drawText(int x, int y, std::string text)
     this->_window.draw(tex);
 }
 
-void SFML::drawBar(int x, int y, int height, int width, uint8_t percentage, std::string text)
+void SFML::drawBar(int x, int y, int height, int width, uint8_t percentage, std::string text, bool reverse_color)
 {
     x *= 8;
     width *= 8;
