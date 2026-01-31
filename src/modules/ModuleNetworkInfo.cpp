@@ -12,7 +12,7 @@ void ModuleNetworkInfo::draw(IDisplay &display) {
   int x = 1;
   int y = display.getY() + 6;
   display.drawBox(x, y, 50, 12 * inets.size() + 4);
-  display.drawText(x + 2, y, "Network Info");
+  display.drawText(x + 2, y, "Network Info", true);
 
   y += 2;
   x++;

@@ -25,7 +25,7 @@ void ModuleSystemInfo::draw(IDisplay &display)
   int y = display.getY() + 6;
   int x = 1;
   display.drawBox(x, y += 1, 50, 14);
-  display.drawText(x + 2, y, "System Info");
+  display.drawText(x + 2, y, "System Info", true);
   y++;
   display.drawText(3, y += 2, user);
   display.drawText(3, y += 2, host);

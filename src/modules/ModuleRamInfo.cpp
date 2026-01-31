@@ -16,7 +16,7 @@ void ModuleRamInfo::draw(IDisplay &display) {
   int y = display.getY() +  4;
 
   display.drawBox(x, y, 50, 11);
-  display.drawText(x + 2, y, "Ram Info");
+  display.drawText(x + 2, y, "Ram Info", true);
   y += 4;
   x += 1;
   display.drawBar(x + 1, y, 1, 48, (used * 100/ total), "RAM");
