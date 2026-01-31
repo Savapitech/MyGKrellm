@@ -1,5 +1,5 @@
 #include "../ADisplay.hpp"
-#include "ncurses.h"
+#include <ncurses.h>
 
 class Ncurses : public ADisplay {
   public:

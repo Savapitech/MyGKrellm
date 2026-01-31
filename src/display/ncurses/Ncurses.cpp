@@ -1,5 +1,4 @@
 #include "Ncurses.hpp"
-#include <ncurses.h>
 
 Ncurses::Ncurses() {
   _name = "Ncurses";
