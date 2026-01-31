@@ -261,3 +261,24 @@ std::uint8_t Metrics::getBatteryPercentage() {
   closedir(dir);
   return 0;
 }
+
+std::string Metrics::getCpuName() {
+  std::ifstream file("/proc/cpuinfo");
+  std::string line;
+
+  while (std::getline(file, line))
+    if (line.rfind("model name", 0) == 0)
+      return line.substr(line.find(':') + 1);
+  return "";
+}
+
+
+std::uint16_t Metrics::getCpuFreq() {
+  std::ifstream file("/proc/cpuinfo");
+  std::string line;
+
+  while (std::getline(file, line))
+    if (line.rfind("cpu MHz", 0) == 0)
+      return std::stoi(line.substr(line.find(':') + 1));
+  return 0;
+}

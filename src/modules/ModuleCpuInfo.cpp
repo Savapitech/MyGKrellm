@@ -15,10 +15,10 @@ void ModuleCpuInfo::draw(IDisplay &display) {
   int y = display.getY() + 6;
 
   display.drawBox(x, y, 50, cpus.size() * 2 + 10);
-  display.drawText(x + 2, y, "CPU Info", true);
+  display.drawText(x + 2, y, "CPU Info |" + Metrics::getCpuName(), true);
   y += 4;
   x += 1;
-  display.drawText(x + 1, y, "Physical: " + std::to_string(physics) + ", " + "Virtual: " + std::to_string(virtuals));
+  display.drawText(x + 1, y, "Physical: " + std::to_string(physics) + ", " + "Virtual: " + std::to_string(virtuals) + ", Freq: " + std::to_string(Metrics::getCpuFreq()) + "Mhz");
   y += 2;
   display.drawBar(x + 1, y, 1, 48, cpus[0], "Total");
   y += 2;

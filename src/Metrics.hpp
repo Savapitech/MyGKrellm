@@ -47,6 +47,8 @@ namespace Metrics {
   std::string getTime();
   std::string getDate();
   std::vector<std::uint8_t> getCpusUsage();
+  std::string getCpuName();
+  std::uint16_t getCpuFreq();
   std::uint16_t getVCpuCount();
   std::uint16_t getPCpuCount();
   std::uint64_t getRamTotalKb();
