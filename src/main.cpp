@@ -28,8 +28,10 @@ int mainLoop(IDisplay *disp, IModule *sy, IModule *cpu, IModule *ram)
 
 int main(void) {
   Ncurses nc;
-  //SFML sf;
-  IDisplay *disp = &nc;
+  SFML sf;
+  IDisplay *disp = &sf;
+  IDisplay *stash = &nc;
+  IDisplay *tmp;
   IModule *sy = new ModuleSystemInfo();
   IModule *cpu = new ModuleCpuInfo();
   IModule *ram = new ModuleRamInfo();
@@ -37,7 +39,9 @@ int main(void) {
   disp->init();
   while (mainLoop(disp, sy, cpu, ram)) {
     disp->cleanup();
-    disp = &nc;
+    tmp = disp;
+    disp = stash;
+    stash = tmp;
     disp->init();
   }
   return 0;
