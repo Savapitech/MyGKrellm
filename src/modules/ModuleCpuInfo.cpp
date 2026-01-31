@@ -12,7 +12,7 @@ void ModuleCpuInfo::draw(IDisplay &display) {
   std::uint16_t physics = Metrics::getPCpuCount();
   std::uint16_t virtuals = Metrics::getVCpuCount();
   int x = 1;
-  int y = 16;
+  int y = display.getY() + 6;
 
   display.drawBox(x, y, 50, cpus.size() * 2 + 10);
   display.drawText(x + 1, y, "CPU Info");
@@ -24,4 +24,5 @@ void ModuleCpuInfo::draw(IDisplay &display) {
   y += 2;
   for (size_t i = 1; i < cpus.size(); ++i) 
     display.drawBar(x + 1, y + i * 2, 1, 48, cpus[i], "Core " + std::to_string(i));
+  display.setY(y + cpus.size() * 2);
 }
