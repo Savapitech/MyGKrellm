@@ -7,8 +7,7 @@
 #define TIME_FORMAT "%H:%M:%S"
 #define DATE_FORMAT "%d/%m/%Y"
 
-class Metrics {
-public:
+namespace Metrics {
   class Inet {
     std::string _name;
     std::string _ip;
@@ -40,9 +39,6 @@ public:
           _transmitPackets(tPackets), _transmitBits(tBits),
           _transmitError(tError), _transmitDrop(rDrop) {}
   };
-
-  Metrics() = default;
-  ~Metrics() = default;
 
   std::string getUsername();
   std::string getHostname();

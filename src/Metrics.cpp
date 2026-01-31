@@ -170,7 +170,7 @@ uint64_t Metrics::getRamUsedKb() {
   std::ifstream file("/proc/meminfo");
   std::string line;
   uint64_t memAvailable = 0;
-  uint64_t memTotal = this->getRamTotalKb();
+  uint64_t memTotal = Metrics::getRamTotalKb();
 
   while (std::getline(file, line)) {
     if (line.rfind("MemAvailable:", 0) == 0) {
