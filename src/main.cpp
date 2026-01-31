@@ -7,29 +7,29 @@
 #include "display/ncurses/Ncurses.hpp"
 #include "display/sfml/SFML.hpp"
 #include "modules/IModule.hpp"
+#include "modules/ModuleBatteryInfo.hpp"
 #include "modules/ModuleCpuInfo.hpp"
 #include "modules/ModuleNetworkInfo.hpp"
-#include "modules/ModuleSystemInfo.hpp"
 #include "modules/ModuleRamInfo.hpp"
-#include "modules/ModuleBatteryInfo.hpp"
+#include "modules/ModuleSystemInfo.hpp"
 
-int mainLoop(IDisplay *disp, IModule *sy, IModule *cpu, IModule *ram, IModule *net, IModule *battery)
-{
-    while (disp->getState()) {
-      disp->refreshWindow();
-      sy->update();
-      cpu->update();
-      ram->update();
-      net->update();
-      battery->draw(*disp);
-      sy->draw(*disp);
-      cpu->draw(*disp);
-      ram->draw(*disp);
-      net->draw(*disp);
-      disp->displayWindow();
-      disp->setY(1);
-    }
-    return 1;
+int mainLoop(IDisplay *disp, IModule *sy, IModule *cpu, IModule *ram,
+             IModule *net, IModule *battery) {
+  while (disp->getState()) {
+    disp->refreshWindow();
+    sy->update();
+    cpu->update();
+    ram->update();
+    net->update();
+    battery->draw(*disp);
+    sy->draw(*disp);
+    cpu->draw(*disp);
+    ram->draw(*disp);
+    net->draw(*disp);
+    disp->displayWindow();
+    disp->setY(1);
+  }
+  return 1;
 }
 
 int main(void) {

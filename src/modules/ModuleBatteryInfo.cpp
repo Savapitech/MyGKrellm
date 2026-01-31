@@ -1,12 +1,10 @@
 #include <string>
 #include <sys/types.h>
 
-#include "ModuleBatteryInfo.hpp"
 #include "../Metrics.hpp"
+#include "ModuleBatteryInfo.hpp"
 
-void ModuleBatteryInfo::update() {
-  return;
-}
+void ModuleBatteryInfo::update() { return; }
 
 void ModuleBatteryInfo::draw(IDisplay &display) {
   int x = 1;
@@ -22,5 +20,6 @@ void ModuleBatteryInfo::draw(IDisplay &display) {
   if (this->_queue.size() == BATTERY_QUEUE_SIZE)
     this->_queue.pop_back();
   this->_queue.push_front(battery);
-  display.drawGraph(53, 55, 25, 187, BATTERY_QUEUE_SIZE, this->_queue, "Battery Usage");
+  display.drawGraph(53, 55, 25, 187, BATTERY_QUEUE_SIZE, this->_queue,
+                    "Battery Usage");
 }

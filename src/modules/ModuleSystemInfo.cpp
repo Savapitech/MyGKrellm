@@ -1,7 +1,6 @@
 #include "ModuleSystemInfo.hpp"
 #include "../Metrics.hpp"
 
-
 ModuleSystemInfo::ModuleSystemInfo() {
   _hostname = Metrics::getHostname();
   _username = Metrics::getUsername();
@@ -16,8 +15,7 @@ void ModuleSystemInfo::update() {
   _date = Metrics::getDate();
 }
 
-void ModuleSystemInfo::draw(IDisplay &display)
-{
+void ModuleSystemInfo::draw(IDisplay &display) {
   std::string user = "Username:  " + _username;
   std::string host = "Hostname:  " + _hostname;
   std::string os = "Op. sys.:  " + _os;

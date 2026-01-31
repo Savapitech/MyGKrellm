@@ -1,16 +1,12 @@
+#include <algorithm>
 #include <ncurses.h>
 #include <unistd.h>
-#include <algorithm>
 
 #include "Ncurses.hpp"
 
-Ncurses::Ncurses() {
-  _name = "Ncurses";
-}
+Ncurses::Ncurses() { _name = "Ncurses"; }
 
-Ncurses::~Ncurses() {
-  endwin();
-}
+Ncurses::~Ncurses() { endwin(); }
 
 void Ncurses::init() {
   _window = initscr();
@@ -51,7 +47,8 @@ void Ncurses::drawText(int x, int y, std::string text, bool header) {
   attroff(COLOR_PAIR(2));
 }
 
-void Ncurses::drawBar(int x, int y, int height, int width, uint8_t percentage, std::string text, bool reverse_color) {
+void Ncurses::drawBar(int x, int y, int height, int width, uint8_t percentage,
+                      std::string text, bool reverse_color) {
   percentage = std::clamp<uint8_t>(percentage, 0, 100);
 
   y /= 2;
@@ -78,7 +75,8 @@ void Ncurses::drawBar(int x, int y, int height, int width, uint8_t percentage, s
 
       if (row == height / 2 &&
           i >= (barWidth - static_cast<int>(content.size())) / 2 &&
-          i <  (barWidth - static_cast<int>(content.size())) / 2 + static_cast<int>(content.size())) {
+          i < (barWidth - static_cast<int>(content.size())) / 2 +
+                  static_cast<int>(content.size())) {
 
         attron(COLOR_PAIR(1));
         int textIndex = i - (barWidth - content.size()) / 2;
@@ -102,10 +100,6 @@ void Ncurses::displayWindow() {
     this->setState(false);
 }
 
-void Ncurses::refreshWindow() {
-  refresh();
-}
+void Ncurses::refreshWindow() { refresh(); }
 
-void Ncurses::cleanup() {
-  endwin();
-}
+void Ncurses::cleanup() { endwin(); }

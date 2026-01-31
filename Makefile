@@ -56,7 +56,9 @@ $(eval $(call mk-profile, test, SRC, --coverage, test))
 all: $(NAME_release)
 
 format:
-	@ clang-format -i src/*
+	@ clang-format -i $(SRC) src/*.hpp src/modules/*.hpp \
+		src/display/sfml/*.hpp \
+		src/display/ncurses/*.hpp
 	@ $(LOG_TIME) "$(C_GREEN) OK  Code formated  $(C_RESET)"
 
 clean:

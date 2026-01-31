@@ -229,11 +229,11 @@ std::vector<Metrics::Inet> Metrics::getInets() {
 }
 
 std::uint8_t Metrics::getBatteryPercentage() {
-  DIR* dir = opendir("/sys/class/power_supply");
+  DIR *dir = opendir("/sys/class/power_supply");
   if (!dir)
     return 0;
 
-  struct dirent* entry;
+  struct dirent *entry;
 
   while ((entry = readdir(dir)) != nullptr) {
     std::string name(entry->d_name);
@@ -273,7 +273,6 @@ std::string Metrics::getCpuName() {
       return line.substr(line.find(':') + 1);
   return "";
 }
-
 
 std::uint16_t Metrics::getCpuFreq() {
   std::ifstream file("/proc/cpuinfo");
