@@ -28,6 +28,6 @@ void ModuleSystemInfo::draw(IDisplay &display)
   display.drawText(2, 5, host);
   display.drawText(2, 7, os);
   display.drawText(2, 9, kernel);
-  display.drawText(20, 5, _date);
-  display.drawText(20, 7, _time);
+  display.drawText(30, 5, _date);
+  display.drawText(30, 7, _time);
 }
