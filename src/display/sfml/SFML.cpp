@@ -3,7 +3,6 @@
 SFML::SFML() :
     _name("SFML")
 {
-    this->_window.setFramerateLimit(1);
     this->_font.loadFromFile(FONT_PATH);
 }
 
@@ -15,6 +14,7 @@ SFML::~SFML()
 void SFML::init()
 {
     this->_window.create(sf::VideoMode().getDesktopMode(), "hello", sf::Style::None);
+    this->_window.setFramerateLimit(1);
     this->setState(true);
     return;
 }
@@ -36,8 +36,12 @@ void SFML::refreshWindow()
 
 void SFML::drawBox(int x, int y, int width, int height)
 {
-    sf::RectangleShape rec(sf::Vector2f(width * 8, height * 16));
-    rec.setPosition(sf::Vector2f(x * 8, y * 16));
+    x *= X_RATIO;
+    y *= Y_RATIO;
+    width *= X_RATIO;
+    height *= Y_RATIO;
+    sf::RectangleShape rec(sf::Vector2f(width, height));
+    rec.setPosition(sf::Vector2f(x, y));
     rec.setFillColor(sf::Color::Black);
     rec.setOutlineColor(sf::Color::White);
     rec.setOutlineThickness(2);
@@ -46,19 +50,22 @@ void SFML::drawBox(int x, int y, int width, int height)
 
 void SFML::drawText(int x, int y, std::string text, bool header)
 {
+    x *= X_RATIO;
+    y *= Y_RATIO;
     sf::Text tex(text, this->_font, 20);
-    tex.setPosition(sf::Vector2f(x * 8, y * 16));
-    tex.setFillColor(sf::Color::Red);
+    tex.setPosition(sf::Vector2f(x, y));
+    tex.setFillColor(sf::Color::White);
     tex.setOutlineColor(sf::Color::Black);
     this->_window.draw(tex);
 }
 
 void SFML::drawBar(int x, int y, int height, int width, uint8_t percentage, std::string text, bool reverse_color)
 {
-    x *= 8;
-    width *= 8;
-    y *= 16;
-    height *= 16;
+    x *= X_RATIO;
+    width -= 2;
+    width *= X_RATIO;
+    y *= Y_RATIO;
+    height *= Y_RATIO;
     sf::RectangleShape rec(sf::Vector2f(width, height));
     sf::Text tex(text, this->_font, 14);
     rec.setPosition(sf::Vector2f(x, y));
@@ -66,19 +73,71 @@ void SFML::drawBar(int x, int y, int height, int width, uint8_t percentage, std:
     rec.setOutlineColor(sf::Color::Black);
     rec.setOutlineThickness(1);
     this->_window.draw(rec);
-    rec.setSize(sf::Vector2f(width * (float(percentage) / 100), height));
-    if (percentage < 25)
-        rec.setFillColor(sf::Color::Green);
-    else if (percentage < 75)
-        rec.setFillColor(sf::Color::Yellow);
-    else
+    double tmp = percentage;
+    if (percentage > 75) {
+        rec.setSize(sf::Vector2f(width * (tmp / 100), height));
         rec.setFillColor(sf::Color::Red);
-    rec.setOutlineThickness(0);
+        this->_window.draw(rec);
+        tmp = 75;
+    }
+    if (percentage > 50) {
+        rec.setSize(sf::Vector2f(width * (tmp / 100), height));
+        rec.setFillColor(sf::Color::Yellow);
+        this->_window.draw(rec);
+        tmp = 50;
+    }
+    rec.setSize(sf::Vector2f(width * (tmp / 100), height));
+    rec.setFillColor(sf::Color::Green);
     this->_window.draw(rec);
     sf::Vector2f vec = tex.getGlobalBounds().getSize();
     tex.setPosition(sf::Vector2f(x + (width / 2) - (vec.x / 2), y - vec.y * 1.5));
     tex.setFillColor(sf::Color::White);
     this->_window.draw(tex);
+}
+
+void SFML::drawGraph(int x, int y, int height, int width, int nbelem, std::deque<uint8_t> &queue, std::string title)
+{
+    int startx = x;
+    int starty = y;
+    x *= X_RATIO;
+    y *= Y_RATIO;
+    width *= X_RATIO;
+    height *= Y_RATIO;
+    int ind_width = width / CPU_QUEUE_SIZE;
+    sf::RectangleShape rec(sf::Vector2f(ind_width * nbelem, height));
+    rec.setPosition(sf::Vector2f(x, y));
+    rec.setFillColor(sf::Color::Black);
+    rec.setOutlineColor(sf::Color::White);
+    rec.setOutlineThickness(2);
+    this->_window.draw(rec);
+    rec.setOutlineThickness(0);
+    x += ind_width * (nbelem - 1);
+    double elheight = 0;
+    for (auto val : queue) {
+        if (val > 75) {
+            rec.setFillColor(sf::Color::Red);
+            elheight = height * (double(val) / 100);
+            rec.setSize(sf::Vector2f(ind_width, elheight));
+            rec.setPosition(sf::Vector2f(x, y + (height - elheight)));
+            this->_window.draw(rec);
+            val = 75;
+        }
+        if (val > 50) {
+            rec.setFillColor(sf::Color::Yellow);
+            elheight = height * (double(val) / 100);
+            rec.setSize(sf::Vector2f(ind_width, elheight));
+            rec.setPosition(sf::Vector2f(x, y + (height - elheight)));
+            this->_window.draw(rec);
+            val = 50;
+        }
+        rec.setFillColor(sf::Color::Green);
+        elheight = height * (double(val) / 100);
+        rec.setSize(sf::Vector2f(ind_width, elheight));
+        rec.setPosition(sf::Vector2f(x, y + (height - elheight)));
+        this->_window.draw(rec);
+        x -= ind_width;
+    }
+    this->drawText(startx + 1, starty + 1, title, false);
 }
 
 const sf::RenderWindow &SFML::getWindow() const

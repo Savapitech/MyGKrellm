@@ -24,5 +24,4 @@ void ModuleNetworkInfo::draw(IDisplay &display) {
     display.drawText(x, y += 2, "\t\t" + std::to_string(inet.getTError()) + " error(s), " + std::to_string(inet.getTDrop()) + " drop(s).");
     y+= 2;
  }
-  display.setY(0);
 }

@@ -196,7 +196,8 @@ std::vector<Metrics::Inet> Metrics::getInets() {
   std::getline(file, line);
   std::getline(file, line);
 
-  while (std::getline(file, line)) {
+  int i = 0;
+  while (std::getline(file, line) && i < 2) {
     std::istringstream iss(line);
     std::string iface;
     if (line.find(":") == std::string::npos)
@@ -221,6 +222,7 @@ std::vector<Metrics::Inet> Metrics::getInets() {
 
     inets.emplace_back(iface, rPackets, rBytes * 8, rErr, rDrop, tPackets,
                        tBytes * 8, tErr, tDrop, ip);
+    i++;
   }
 
   return inets;

@@ -22,4 +22,8 @@ void ModuleRamInfo::draw(IDisplay &display) {
   display.drawBar(x + 1, y, 1, 48, (used * 100/ total), "RAM");
   display.drawText(x + 1, y += 2, "RAM Usage: " + std::to_string(used) + "MB / " + std::to_string(total) + "MB, " + std::to_string(free) + "MB free.");
   display.setY(y);
+  if (this->_queue.size() == RAM_QUEUE_SIZE)
+    this->_queue.pop_back();
+  this->_queue.push_front(used * 100 / total);
+  display.drawGraph(53, 28, 25, 187, RAM_QUEUE_SIZE, this->_queue, "RAM Usage");
 }

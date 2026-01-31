@@ -4,7 +4,7 @@
 #include <string>
 
 class ADisplay : public IDisplay {
-  int _y = 0;
+  int _y = 1;
 
   public:
     virtual ~ADisplay() = default;

@@ -21,8 +21,12 @@ void ModuleCpuInfo::draw(IDisplay &display) {
   display.drawText(x + 1, y, "Physical: " + std::to_string(physics) + ", " + "Virtual: " + std::to_string(virtuals) + ", Freq: " + std::to_string(Metrics::getCpuFreq()) + "Mhz");
   y += 2;
   display.drawBar(x + 1, y, 1, 48, cpus[0], "Total");
+  if (this->_queue.size() == CPU_QUEUE_SIZE)
+    this->_queue.pop_back();
+  this->_queue.push_front(cpus[0]);
   y += 2;
   for (size_t i = 1; i < cpus.size(); ++i) 
     display.drawBar(x + 1, y + i * 2, 1, 48, cpus[i], "Core " + std::to_string(i));
   display.setY(y + cpus.size() * 2);
+  display.drawGraph(53, 1, 25, 187, CPU_QUEUE_SIZE, this->_queue, "CPU Usage");
 }

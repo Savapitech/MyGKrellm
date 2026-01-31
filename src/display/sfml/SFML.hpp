@@ -3,8 +3,11 @@
 #include "../ADisplay.hpp"
 #include <string>
 #include <SFML/Graphics.hpp>
+#include <SFML/System/Clock.hpp>
 
 #define FONT_PATH "src/assets/Radiant Regular/Radiant.ttf"
+#define X_RATIO 8
+#define Y_RATIO 9
 
 
 class SFML : public ADisplay {
@@ -17,6 +20,7 @@ class SFML : public ADisplay {
     virtual void drawBox(int x, int y, int width, int height) override;
     virtual void drawText(int x, int y, std::string text, bool header = false) override;
     virtual void drawBar(int x, int y, int height, int width, uint8_t percentage, std::string text, bool reverse_color = false) override;
+    virtual void drawGraph(int x, int y, int height, int width, int nbelem, std::deque<uint8_t> &queue, std::string title) override;
     virtual void cleanup() override;
 
     const sf::RenderWindow &getWindow() const;

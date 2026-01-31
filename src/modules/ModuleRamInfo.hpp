@@ -9,4 +9,6 @@ class ModuleRamInfo : public AModule {
     ~ModuleRamInfo() = default;
     virtual void draw(IDisplay &display) override;
     virtual void update() override;
+  private:
+    std::deque<uint8_t> _queue;
 };

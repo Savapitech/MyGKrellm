@@ -98,6 +98,8 @@ void Ncurses::drawBar(int x, int y, int height, int width, uint8_t percentage, s
 void Ncurses::displayWindow() {
   timeout(1000);
   _ch = getch();
+  if (_ch == 'e')
+    this->setState(false);
 }
 
 void Ncurses::refreshWindow() {

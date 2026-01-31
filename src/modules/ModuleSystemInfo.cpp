@@ -22,9 +22,9 @@ void ModuleSystemInfo::draw(IDisplay &display)
   std::string host = "Hostname:  " + _hostname;
   std::string os = "Op. sys.:  " + _os;
   std::string kernel = "Kernel:  " + _kernel;
-  int y = display.getY() + 6;
+  int y = display.getY() + 4;
   int x = 1;
-  display.drawBox(x, y += 1, 50, 14);
+  display.drawBox(x, y += 1, 50, 12);
   display.drawText(x + 2, y, "System Info", true);
   y++;
   display.drawText(3, y += 2, user);

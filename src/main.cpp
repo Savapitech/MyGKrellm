@@ -27,15 +27,16 @@ int mainLoop(IDisplay *disp, IModule *sy, IModule *cpu, IModule *ram, IModule *n
       ram->draw(*disp);
       net->draw(*disp);
       disp->displayWindow();
+      disp->setY(1);
     }
     return 1;
 }
 
 int main(void) {
   Ncurses nc;
-  //SFML sf;
+  SFML sf;
   IDisplay *disp = &nc;
-  IDisplay *stash = &nc;
+  IDisplay *stash = &sf;
   IDisplay *tmp;
   IModule *battery = new ModuleBatteryInfo();
   IModule *sy = new ModuleSystemInfo();
