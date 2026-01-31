@@ -10,6 +10,7 @@ class Ncurses : public ADisplay {
     virtual void refreshWindow() override;
     virtual void drawBox(int x, int y, int width, int height) override;
     virtual void drawText(int x, int y, std::string text) override; 
+    virtual void cleanup() override;
   private:
     WINDOW *_window;
 };

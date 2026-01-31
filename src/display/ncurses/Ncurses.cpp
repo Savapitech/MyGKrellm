@@ -18,6 +18,7 @@ void Ncurses::init() {
     init_pair(4, COLOR_YELLOW, COLOR_BLACK);
     cbreak();
     noecho();
+    this->setState(true);
 }
 
 
@@ -52,3 +53,6 @@ void Ncurses::refreshWindow() {
   return;
 }
 
+void Ncurses::cleanup() {
+  endwin();
+}

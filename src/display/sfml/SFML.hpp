@@ -4,7 +4,8 @@
 #include <string>
 #include <SFML/Graphics.hpp>
 
-#define FONT_PATH "src/assets/VMV Sega Genesis/VMVSegaGenesis-Regular.otf"
+#define FONT_PATH "src/assets/Radiant Regular/Radiant.ttf"
+
 
 class SFML : public ADisplay {
   public:
@@ -15,6 +16,7 @@ class SFML : public ADisplay {
     void refreshWindow();
     void drawBox(int x, int y, int width, int height);
     void drawText(int x, int y, std::string text);
+    void cleanup();
 
     const sf::RenderWindow &getWindow() const;
 
@@ -24,3 +26,22 @@ class SFML : public ADisplay {
     sf::Font _font;
     sf::Event _event;
 };
+
+
+/*
+class SFML : public ADisplay {
+  public:
+    SFML();
+    ~SFML();
+    void init();
+    void displayWindow();
+    void refreshWindow();
+    void drawBox(int x, int y, int width, int height);
+    void drawText(int x, int y, std::string text);
+  private:
+    std::string _name;
+    std::unique_ptr<sf::RenderWindow> _window;
+    sf::Font _font;
+    sf::Event _event;
+};
+*/

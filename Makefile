@@ -5,6 +5,7 @@ BIN_NAME := MyGKrellm
 SRC = src/main.cpp
 SRC += src/modules/AModule.cpp
 SRC += src/modules/ModuleSystemInfo.cpp
+SRC += src/modules/ModuleCpuInfo.cpp
 SRC += src/Metrics.cpp
 SRC += src/display/sfml/SFML.cpp
 SRC += src/display/ncurses/Ncurses.cpp
