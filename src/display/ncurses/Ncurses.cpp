@@ -63,15 +63,20 @@ void Ncurses::drawBar(int x, int y, int height, int width, uint8_t percentage, s
     for (int i = 0; i < barWidth; ++i) {
       bool isFilled = i < filled;
 
-      if (isFilled)
-        attron(COLOR_PAIR(1));
-      else
+    if (isFilled && i < barWidth / 2)
+        attron(COLOR_PAIR(3));
+    else if (isFilled && i > barWidth / 2 && i <= barWidth / 4 * 3)
+        attron(COLOR_PAIR(4));
+    else if (isFilled && i > barWidth / 4 * 3)
         attron(COLOR_PAIR(2));
+    else
+        attron(COLOR_PAIR(1));
 
       if (row == height / 2 &&
           i >= (barWidth - static_cast<int>(content.size())) / 2 &&
           i <  (barWidth - static_cast<int>(content.size())) / 2 + static_cast<int>(content.size())) {
 
+        attron(COLOR_PAIR(1));
         int textIndex = i - (barWidth - content.size()) / 2;
         addch(content[textIndex]);
       } else
@@ -87,8 +92,6 @@ void Ncurses::drawBar(int x, int y, int height, int width, uint8_t percentage, s
 void Ncurses::displayWindow() {
   timeout(1000);
   _ch = getch();
-  if (_ch == 'e')
-    this->setState(false);
 }
 
 void Ncurses::refreshWindow() {

@@ -14,14 +14,14 @@ void ModuleCpuInfo::draw(IDisplay &display) {
   int x = 1;
   int y = 13;
 
-  display.drawBox(x, y, 50, cpus.size() * 2 + 12);
+  display.drawBox(x, y, 50, cpus.size() * 2 + 10);
   display.drawText(x + 1, y, "CPU Info");
   y += 2;
   x += 1;
-  //drawbar
-  y += 6;
+  display.drawBar(x, y, 1, 50, cpus[0], "Total");
+  y += 2;
   display.drawText(x + 1, y, "Physical: " + std::to_string(physics) + ", " + "Virtual: " + std::to_string(virtuals));
-  y += 4;
+  y += 3;
   for (size_t i = 0; i < cpus.size(); ++i) { 
     display.drawBar(x, y + i * 2, 1, 50, cpus[i], "Core " + std::to_string(i));
   }
