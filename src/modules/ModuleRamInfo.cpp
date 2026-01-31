@@ -13,14 +13,13 @@ void ModuleRamInfo::draw(IDisplay &display) {
   std::uint64_t used = Metrics::getRamUsedKb() / 1000;
   std::uint64_t free = total - used;
   int x = 1;
-  int y = 70;
+  int y = 13 + Metrics::getCpusUsage().size() * 2 + 7;
 
-  display.drawBox(x, y, 50, 15);
+  display.drawBox(x, y, 50, 10);
   display.drawText(x + 1, y, "Ram Info");
-  y += 2;
+  y += 3;
   x += 1;
   display.drawBar(x, y, 1, 50, (used * 100/ total), "");
-  y += 4;
-  display.drawText(x + 3, y += 2, std::to_string(used * 100 / total) + "%");
+  display.drawText(x + 3, y += 3, std::to_string(used * 100 / total) + "%");
   display.drawText(x + 1, y += 2, "RAM Usage: " + std::to_string(used) + " / " + std::to_string(total) + ", " + std::to_string(free) + " free.");
 }
