@@ -3,12 +3,23 @@
 #include <unistd.h>
 
 #include "Metrics.hpp"
+#include "display/IDisplay.hpp"
+#include "display/ncurses/Ncurses.hpp"
+#include "display/sfml/SFML.hpp"
+#include "modules/IModule.hpp"
+#include "modules/ModuleSystemInfo.hpp"
 
 int main(void) {
-  Metrics metrics;
+  IDisplay *disp = new Ncurses();
+  IModule *sy = new ModuleSystemInfo();
+
+  disp->init();
 
   while (true) {
-
+    disp->refreshWindow();
+    sy->draw(*disp);
+    disp->displayWindow();
+   /* 
     std::cout << metrics.getUsername() << std::endl;
     std::cout << metrics.getHostname() << std::endl;
     std::cout << metrics.getOs() << std::endl;
@@ -41,7 +52,7 @@ int main(void) {
                 << "\n";
     }
 
-    sleep(1);
+    sleep(1);*/
   }
   return 0;
 }
