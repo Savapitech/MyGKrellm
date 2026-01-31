@@ -6,6 +6,7 @@ namespace Krell {
 
 class IModule {
 public:
+  virtual ~IModule() = default;
   virtual std::string get_name() const = 0;
   virtual bool get_state() const = 0;
   virtual void draw(IDisplay &display) = 0;

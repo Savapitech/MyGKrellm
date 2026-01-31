@@ -59,7 +59,7 @@ format:
 	@ clang-format -i $(SRC) src/*.hpp src/modules/*.hpp \
 		src/display/sfml/*.hpp \
 		src/display/ncurses/*.hpp
-	@ $(LOG_TIME) "$(C_GREEN) OK  Code formated  $(C_RESET)"
+	@ $(LOG_TIME) "$(C_BLUE) CF $(C_GREEN) Code formated  $(C_RESET)"
 
 clean:
 	@ $(RM) $(OBJ)
@@ -67,7 +67,7 @@ clean:
 
 fclean:
 	@ $(RM) -r $(NAME_release) $(NAME_debug) $(BUILD_DIR)
-	@ $(LOG_TIME) "$(C_YELLOW) RM $(C_PURPLE) $(NAME_release) $(NAME_test) \
+	@ $(LOG_TIME) "$(C_YELLOW) RM $(C_PURPLE) $(NAME_release) \
 		$(C_RESET)"
 
 .NOTPARALLEL: re

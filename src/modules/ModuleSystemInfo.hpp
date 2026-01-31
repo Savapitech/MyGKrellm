@@ -9,7 +9,7 @@ namespace Krell {
 class ModuleSystemInfo : public AModule {
 public:
   ModuleSystemInfo();
-  ~ModuleSystemInfo();
+  ~ModuleSystemInfo() = default;
   virtual void draw(IDisplay &display) override;
   virtual void update() override;
 

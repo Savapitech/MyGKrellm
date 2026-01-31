@@ -1,6 +1,8 @@
 #include <iomanip>
 #include <iostream>
+#include <memory>
 #include <unistd.h>
+#include <vector>
 
 #include "Metrics.hpp"
 #include "display/IDisplay.hpp"
@@ -13,20 +15,17 @@
 #include "modules/ModuleRamInfo.hpp"
 #include "modules/ModuleSystemInfo.hpp"
 
-int mainLoop(Krell::IDisplay *disp, Krell::IModule *sy, Krell::IModule *cpu,
-             Krell::IModule *ram, Krell::IModule *net,
-             Krell::IModule *battery) {
+int mainLoop(Krell::IDisplay *disp,
+             std::vector<std::unique_ptr<Krell::IModule>> &modules) {
   while (disp->getState()) {
     disp->refreshWindow();
-    sy->update();
-    cpu->update();
-    ram->update();
-    net->update();
-    battery->draw(*disp);
-    sy->draw(*disp);
-    cpu->draw(*disp);
-    ram->draw(*disp);
-    net->draw(*disp);
+
+    for (auto &module : modules)
+      module->update();
+
+    for (auto &module : modules)
+      module->draw(*disp);
+
     disp->displayWindow();
     disp->setY(1);
   }
@@ -39,14 +38,16 @@ int main(void) {
   Krell::IDisplay *disp = &nc;
   Krell::IDisplay *stash = &sf;
   Krell::IDisplay *tmp;
-  Krell::IModule *battery = new Krell::ModuleBatteryInfo();
-  Krell::IModule *sy = new Krell::ModuleSystemInfo();
-  Krell::IModule *cpu = new Krell::ModuleCpuInfo();
-  Krell::IModule *ram = new Krell::ModuleRamInfo();
-  Krell::IModule *net = new Krell::ModuleNetworkInfo();
+
+  std::vector<std::unique_ptr<Krell::IModule>> modules;
+  modules.push_back(std::make_unique<Krell::ModuleBatteryInfo>());
+  modules.push_back(std::make_unique<Krell::ModuleSystemInfo>());
+  modules.push_back(std::make_unique<Krell::ModuleCpuInfo>());
+  modules.push_back(std::make_unique<Krell::ModuleRamInfo>());
+  modules.push_back(std::make_unique<Krell::ModuleNetworkInfo>());
 
   disp->init();
-  while (mainLoop(disp, sy, cpu, ram, net, battery)) {
+  while (mainLoop(disp, modules)) {
     disp->cleanup();
     tmp = disp;
     disp = stash;
