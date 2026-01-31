@@ -25,6 +25,8 @@
           gcovr
           valgrind
           criterion
+          ncurses
+          sfml_2
         ];
 
         env.NIX_CFLAGS_COMPILE =
